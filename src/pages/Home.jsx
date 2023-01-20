@@ -6,6 +6,7 @@ import PizzaBlock from "../components/PizzaBlock";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategoryId} from "../redux/slices/filterSlice";
+import axios from "axios";
 
 const Home = () => {
 
@@ -25,12 +26,11 @@ const Home = () => {
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc'
         const sortBy = sort.sortProperty.replace('-', '');
         const category = categoryId > 0 ? `category=${categoryId}` : '';
-        fetch(`https://63c8e85d320a0c4c953cd10d.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`).then((res) => {
-            return res.json()
-        }).then((josn) => {
-            setItems(josn)
-            setIsLoading(false)
-        });
+        axios.get(`https://63c8e85d320a0c4c953cd10d.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`)
+            .then(res => {
+                setItems(res.data)
+                setIsLoading(false)
+            })
         window.scrollTo(0,0)
     }, [categoryId, sort])
 

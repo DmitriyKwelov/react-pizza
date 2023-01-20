@@ -3,7 +3,7 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import Search from "./Search";
 
-const Header = ({setSearchValue, searchValue}) => {
+const Header = () => {
     return (
         <div className="header">
             <div className="container">
@@ -16,7 +16,7 @@ const Header = ({setSearchValue, searchValue}) => {
                         </div>
                     </div>
                 </NavLink>
-                <Search setSearchValue={setSearchValue} searchValue={searchValue} />
+                <Search />
                 <div className="header__cart">
                     <NavLink to="/cart" className="button button--cart">
                         <span>520 ₽</span>

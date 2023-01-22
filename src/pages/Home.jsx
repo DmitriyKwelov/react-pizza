@@ -87,6 +87,7 @@ const Home = () => {
     }).map((pizza) =>
         <PizzaBlock
             key={pizza.id}
+            id={pizza.id}
             imageUrl={pizza.imageUrl}
             title={pizza.title}
             price={pizza.price}

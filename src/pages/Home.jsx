@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectFilter, selectPizzaData, setCategoryId, setFilters} from "../redux/slices/filterSlice";
 import axios from "axios";
 import qs from "qs";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {fetchPizzas, setItems} from "../redux/slices/pizzasSlice";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
     const isMounted = useRef(false)
 
     const {categoryId, sort, searchValue} = useSelector(selectFilter)
-    const {items , status} = useSelector(selectPizzaData)
+    const {items, status} = useSelector(selectPizzaData)
 
     const onChangeCategory = (id) => {
         dispatch(setCategoryId(id))
@@ -82,15 +82,17 @@ const Home = () => {
             return false
         }
     }).map((pizza) =>
-        <PizzaBlock
-            key={pizza.id}
-            id={pizza.id}
-            imageUrl={pizza.imageUrl}
-            title={pizza.title}
-            price={pizza.price}
-            sizes={pizza.sizes}
-            types={pizza.types}
-        />
+        <NavLink to={`/pizzas/${pizza.id}`}>
+            <PizzaBlock
+                key={pizza.id}
+                id={pizza.id}
+                imageUrl={pizza.imageUrl}
+                title={pizza.title}
+                price={pizza.price}
+                sizes={pizza.sizes}
+                types={pizza.types}
+            />
+        </NavLink>
     )
 
     return (

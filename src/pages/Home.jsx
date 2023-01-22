@@ -5,7 +5,7 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
-import {setCategoryId, setFilters} from "../redux/slices/filterSlice";
+import {selectFilter, selectPizzaData, setCategoryId, setFilters} from "../redux/slices/filterSlice";
 import axios from "axios";
 import qs from "qs";
 import {useNavigate} from "react-router-dom";
@@ -18,10 +18,8 @@ const Home = () => {
     const isSearch = useRef(false)
     const isMounted = useRef(false)
 
-    const {categoryId, sort} = useSelector(state => state.filter)
-    const {items , status} = useSelector(state => state.pizzas)
-
-    const {searchValue} = useContext(SearchContext);
+    const {categoryId, sort, searchValue} = useSelector(selectFilter)
+    const {items , status} = useSelector(selectPizzaData)
 
     const onChangeCategory = (id) => {
         dispatch(setCategoryId(id))

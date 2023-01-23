@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 import Search from "./Search";
 import {useSelector} from "react-redux";
-import {selectCart} from "../redux/slices/pizzasSlice";
+import {selectCart} from "../redux/slices/cartSlice";
 
 const Header: FC = () => {
 

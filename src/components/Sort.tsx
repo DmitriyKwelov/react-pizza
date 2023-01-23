@@ -1,13 +1,13 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectSort, setSort} from "../redux/slices/filterSlice";
+import {ISort, selectSort, setSort} from "../redux/slices/filterSlice";
 
 type SortItems = {
     name: string;
     sortProperty: string;
 }
 
-export const sortList: SortItems[] = [
+export const sortList: ISort[] = [
     {name: 'популярности (DESC)', sortProperty: 'rating'},
     {name: 'популярности (ASC)', sortProperty: '-rating'},
     {name: 'цене (DESC)', sortProperty: 'price'},
@@ -24,7 +24,7 @@ const Sort: FC = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
-    const onClickListItem = (obj: SortItems) => {
+    const onClickListItem = (obj: ISort) => {
         dispatch(setSort(obj))
         setIsOpen(false)
     }

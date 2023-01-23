@@ -1,11 +1,9 @@
 import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, clearItem, minusItem, removeItem} from "../redux/slices/cartSlice";
+import {clearItem, selectCart} from "../redux/slices/cartSlice";
 import CartItem from "../components/CartItem";
 import CartEmpty from "../components/CartEmpty";
-import {selectCart} from "../redux/slices/pizzasSlice";
-import any = jasmine.any;
 
 const Cart: FC = () => {
 

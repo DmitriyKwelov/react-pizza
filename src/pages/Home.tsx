@@ -1,17 +1,15 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {FC, useContext, useEffect, useRef, useState} from 'react';
 import Categories from "../components/Categories";
 import Sort, {sortList} from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock";
-import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {selectFilter, selectPizzaData, setCategoryId, setFilters} from "../redux/slices/filterSlice";
-import axios from "axios";
 import qs from "qs";
-import {NavLink, useNavigate} from "react-router-dom";
-import {fetchPizzas, setItems} from "../redux/slices/pizzasSlice";
+import {useNavigate} from "react-router-dom";
+import {fetchPizzas} from "../redux/slices/pizzasSlice";
 
-const Home = () => {
+const Home: FC = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -21,7 +19,7 @@ const Home = () => {
     const {categoryId, sort, searchValue} = useSelector(selectFilter)
     const {items, status} = useSelector(selectPizzaData)
 
-    const onChangeCategory = (id) => {
+    const onChangeCategory = (id: number) => {
         dispatch(setCategoryId(id))
     }
 
@@ -30,11 +28,14 @@ const Home = () => {
         const sortBy = sort.sortProperty.replace('-', '');
         const category = categoryId > 0 ? `category=${categoryId}` : '';
 
-        dispatch(fetchPizzas({
+        dispatch(
+            // @ts-ignore
+            fetchPizzas({
             order,
             sortBy,
             category
-        }))
+        })
+        )
     }
 
     useEffect(() => {
@@ -75,13 +76,13 @@ const Home = () => {
 
 
     const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}/>);
-    const pizza = items.filter(obj => {
+    const pizza = items.filter((obj: any) => {
         if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
             return true
         } else {
             return false
         }
-    }).map((pizza) =>
+    }).map((pizza: any) =>
             <PizzaBlock
                 key={pizza.id}
                 id={pizza.id}

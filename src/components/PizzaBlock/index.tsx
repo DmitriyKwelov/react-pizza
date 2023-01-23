@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addItem} from "../../redux/slices/cartSlice";
 import {selectCartItemById} from "../../redux/slices/pizzasSlice";
 import {NavLink} from "react-router-dom";
 
-const Index = ({id, title, price, imageUrl, sizes, types}) => {
+type PizzaBlockProps = {
+    id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    sizes: number[];
+    types: number[]
+}
+
+const PizzaBlock: FC<PizzaBlockProps> = ({id, title, price, imageUrl, sizes, types}) => {
 
     const dispatch = useDispatch();
 
@@ -76,4 +85,4 @@ const Index = ({id, title, price, imageUrl, sizes, types}) => {
     );
 };
 
-export default Index;
+export default PizzaBlock;

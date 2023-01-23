@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, clearItem, minusItem, removeItem} from "../redux/slices/cartSlice";
 import CartItem from "../components/CartItem";
 import CartEmpty from "../components/CartEmpty";
 import {selectCart} from "../redux/slices/pizzasSlice";
+import any = jasmine.any;
 
-const Cart = () => {
+const Cart: FC = () => {
 
     const dispatch = useDispatch();
 
     const {items, totalPrice} = useSelector(selectCart)
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
     const clearCart = () => {
+        // @ts-ignore
         dispatch(clearItem())
     }
 
@@ -62,7 +64,7 @@ const Cart = () => {
                     </div>
                     <div className="content__items">
 
-                        {items.map((pizza) =>
+                        {items.map((pizza: any) =>
                             <CartItem key={pizza.id} {...pizza} />
                         )}
                     </div>

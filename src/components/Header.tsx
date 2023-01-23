@@ -1,15 +1,15 @@
 import HeaderLogo from '../assets/img/pizza-logo.svg'
-import React from 'react';
+import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 import Search from "./Search";
 import {useSelector} from "react-redux";
 import {selectCart} from "../redux/slices/pizzasSlice";
 
-const Header = () => {
+const Header: FC = () => {
 
     const {items, totalPrice} = useSelector(selectCart)
 
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
     return (
         <div className="header">

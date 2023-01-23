@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useContext, useEffect, useRef, useState} from 'react';
 import Categories from "../components/Categories";
 import Sort, {sortList} from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
@@ -20,9 +20,9 @@ const Home: FC = () => {
     const {categoryId, sort, searchValue} = useSelector(selectFilter)
     const {items, status} = useSelector(selectPizzaData)
 
-    const onChangeCategory = (id: number) => {
+    const onChangeCategory = useCallback((id: number) => {
         dispatch(setCategoryId(id))
-    }
+    }, [])
 
     const getPizzas = async () => {
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc'

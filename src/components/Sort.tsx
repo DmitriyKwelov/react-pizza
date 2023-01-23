@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, memo, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {ISort, selectSort, setSort} from "../redux/slices/filterSlice";
 
@@ -16,7 +16,8 @@ export const sortList: ISort[] = [
     {name: 'алфавиту (ASC)', sortProperty: '-title'},
 ];
 
-const Sort: FC = () => {
+
+const Sort: FC = memo(() => {
 
     const dispatch = useDispatch();
     const sort = useSelector(selectSort)
@@ -74,6 +75,6 @@ const Sort: FC = () => {
             }
         </div>
     );
-};
+})
 
 export default Sort;

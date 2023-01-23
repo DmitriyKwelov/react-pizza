@@ -82,7 +82,6 @@ const Home = () => {
             return false
         }
     }).map((pizza) =>
-        <NavLink to={`/pizzas/${pizza.id}`}>
             <PizzaBlock
                 key={pizza.id}
                 id={pizza.id}
@@ -92,7 +91,6 @@ const Home = () => {
                 sizes={pizza.sizes}
                 types={pizza.types}
             />
-        </NavLink>
     )
 
     return (

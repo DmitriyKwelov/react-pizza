@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addItem} from "../../redux/slices/cartSlice";
 import {selectCartItemById} from "../../redux/slices/pizzasSlice";
+import {NavLink} from "react-router-dom";
 
 const Index = ({id, title, price, imageUrl, sizes, types}) => {
 
@@ -29,11 +30,13 @@ const Index = ({id, title, price, imageUrl, sizes, types}) => {
     return (
         <div className="pizza-block-wrapper">
             <div className="pizza-block">
-                <img
-                    className="pizza-block__image"
-                    src={imageUrl}
-                    alt="Pizza"
-                />
+                <NavLink to={`/pizzas/${id}`}>
+                    <img
+                        className="pizza-block__image"
+                        src={imageUrl}
+                        alt="Pizza"
+                    />
+                </NavLink>
                 <h4 className="pizza-block__title">{title}</h4>
                 <div className="pizza-block__selector">
                     <ul>
